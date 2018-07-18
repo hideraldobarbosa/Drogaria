@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="produto_fabricante" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="240a61f5-cd88-41ca-9715-3ac4a8b67a23">
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[ZHJvZ2FyaWEuZmFicmljYW50ZSAsMTc2LDQxLDkwZGVjODU4LWZhZDQtNDQ3Mi04ZTI5LWRkMTZl
+MmY4NmVmNTtkcm9nYXJpYS5wcm9kdXRvICwxNSwxNSwzNmIxMjE3Ny1jMWFkLTRmYWMtYjA4My1m
+MTYwNmM0NDdjMGE7]]>
+	</property>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Drogaria Data Adapter "/>
+	<queryString language="SQL">
+		<![CDATA[SELECT drogaria.fabricante.descricao AS fabricante,
+	drogaria.produto.preco,
+	drogaria.produto.descricao AS produto,
+	drogaria.produto.quantidade
+FROM drogaria.produto
+	INNER JOIN drogaria.fabricante ON 
+	 drogaria.produto.fabricante_codigo = drogaria.fabricante.codigo]]>
+	</queryString>
+	<field name="fabricante" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="fabricante"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="fabricante"/>
+	</field>
+	<field name="preco" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="preco"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produto"/>
+	</field>
+	<field name="produto" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="produto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produto"/>
+	</field>
+	<field name="quantidade" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="quantidade"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produto"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="83" splitType="Stretch">
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="10" y="6" width="555" height="70" uuid="3732eb9a-c2b2-41d2-b371-0d2cd3f60b32"/>
+				<imageExpression><![CDATA["src/main/webapp/resources/images/banner50.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="15" width="540" height="30" uuid="5067c51a-2052-45b6-9eb8-238edcd737b3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Produtos por Fabricante]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="30" uuid="668fb438-b59c-4fce-a890-09a2a5bede24">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1952898d-b0cb-4d05-99c1-2e40a0777da4"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[fabricante]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="260" height="30" uuid="a8ca6344-1fec-4b24-abc2-f9d45e07a4e1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="14edf613-b8a2-496c-a410-a492dbd082b0"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[produto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="0" width="100" height="30" uuid="831a2ecc-d1a5-45b5-9e8c-a5f9966fb950">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1cec2a7f-37a8-4529-857d-2faf22603d03"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[quantidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="0" width="80" height="30" uuid="9ba9fb0f-eb58-4d78-a149-a54ab120f372">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2055fac6-2ff6-43eb-9013-43a36a6eae22"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[preco]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="17c9103b-a403-490c-bdc0-abc63037806f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1952898d-b0cb-4d05-99c1-2e40a0777da4"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fabricante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="260" height="20" uuid="612c581f-3a3c-4cea-bd4c-4f458f7a19ed">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="14edf613-b8a2-496c-a410-a492dbd082b0"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{produto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="0" width="100" height="20" uuid="95249e8e-a92e-49f3-be7c-22831b08d447">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1cec2a7f-37a8-4529-857d-2faf22603d03"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quantidade}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤#,##0.00;¤-#,##0.00">
+				<reportElement x="480" y="0" width="80" height="20" uuid="1bb6c694-7e5e-486d-9f6d-b8bbb7b61b9e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2055fac6-2ff6-43eb-9013-43a36a6eae22"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{preco}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Immediate">
+			<staticText>
+				<reportElement x="4" y="8" width="548" height="22" uuid="7e42d363-7830-42cb-99d4-d2ab03c4ecd8"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+					<paragraph lineSpacing="AtLeast"/>
+				</textElement>
+				<text><![CDATA[Rua Diametral, 112 apto 301, Sagrada Familia, Belo Horizonte - MG]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

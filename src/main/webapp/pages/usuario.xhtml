@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://xmlns.jcp.org/jsf/html"
+xmlns:f="http://xmlns.jcp.org/jsf/core"
+xmlns:p="http://primefaces.org/ui">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Usuários</title>
+</h:head>
+<h:body>
+<p:growl id="mensagem"/>
+<h:form id="formListagem">
+   <p:panel header="Usuários - Listagem">
+   		<p:dataTable id = "tabela" emptyMessage="Nenhum registro encontrado." 
+   		paginator="true" value="#{usuarioBean.usuarios}" var="usuario"
+   		rolls="5">
+   		    <f:facet name="footer">
+   		       <p:commandButton value="Novo" actionListener="#{usuarioBean.novo()}"
+   		            update=":mensagem :formCadastro:painel"
+   		            oncomplete="PF('dlgUsuario').show();">
+   		            <f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+		       </p:commandButton>
+   		    </f:facet>    
+   		    <p:column headerText="Nome" sortBy="#{usuario.pessoa.nome}"
+   		         filterBy="#{usuario.pessoa.nome}">
+   		   		 <h:outputText value="#{usuario.pessoa.nome}" />
+   		    </p:column>
+
+   		    <p:column headerText="CPF" sortBy="#{usuario.pessoa.cpf}"
+   		         filterBy="#{usuario.pessoa.cpf}">
+   		       <h:outputText value="#{usuario.pessoa.cpf}" />
+   	    	</p:column>   
+   	    	
+   	    	<p:column headerText="Tipo" sortBy="#{usuario.tipoFormatado}">
+   		       <h:outputText value="#{usuario.tipoFormatado}" />
+   	    	</p:column>   
+   	    	
+   	    	<p:column headerText="Ativo" sortBy="#{usuario.ativoFormatado}">
+   		          <h:outputText value="#{usuario.ativoFormatado}" />
+   		    </p:column>
+
+   			<p:column headerText="Opções">
+   	     		<p:commandButton icon="ui-icon-trash"
+   	     			actionListener="#{usuarioBean.excluir()}"
+   	     			update=":mensagem :formListagem:tabela">
+   		    		<p:confirm header="Confirmação" message="Deseja excluir este Usuário?" icon="ui-icon-alert" />
+   		    		<f:attribute name="usuarioSelecionado" value="#{usuario}"/>
+   		    	</p:commandButton>
+ 				<p:commandButton icon="ui-icon-pencil" 
+ 					actionListener="#{usuarioBean.editar}"
+   	     			update=":mensagem :formCadastro:painel"
+   	     			oncomplete="PF('dlgUsuario').show();">
+   		    		<f:attribute name="usuarioSelecionado" value="#{usuario}"/>
+   		    	</p:commandButton>
+   			</p:column>
+  
+   		</p:dataTable>
+   
+   </p:panel>
+
+</h:form>
+<p:dialog headeText="Usuários - Cadastros" widgetVar="dlgUsuario" 
+			draggable="false" resizable="false" modal="true" closable="false">
+	<h:form id="formCadastro">
+		<h:panelGrid id="painel" columns="2">
+   		    <p:outputLabel for="pessoa" value="Pessoa:"/>
+			<p:selectOneMenu id="pessoa" filter="true" 
+			     value="#{usuarioBean.usuario.pessoa}"  required="true" 
+			     requiredMessage="Campo pessoa é obrigatório."
+			     converter="omnifaces.SelectItemsConverter" >
+			    <f:selectItem noSelectionOption="true" itemLabel="Selecione uma Pessoa"/>
+			    <f:selectItems value="#{usuarioBean.pessoas}" var="pessoa"
+			    itemValue="#{pessoa}" itemLabel="#{pessoa.nome}"/>
+			</p:selectOneMenu>
+			
+
+			<h:outputLabel for="Senha" value="Senha:" />
+			<p:password id="Senha" maxlength="8" size="10" value="#{usuarioBean.usuario.senha}"
+				 required="true" requiredMessage="O campo senha é obrigatório."
+				 validatorMessage="Informe a senha de 4 a 8 caracteres">
+				 <f:validateLength minimun="4" maximum="8"/>
+			</p:password>
+			
+			<p:outputLabel for="Tipo" value="Tipo:"/>
+			<p:selectOneRadio id="Tipo" value="#{usuarioBean.usuario.tipo}" 
+				required="true" requiredMessage="O campo tipo é obrigatório.">	
+			
+				<f:selectItem itemValue="A" itemLabel="Administrador"/>
+				<f:selectItem itemValue="G" itemLabel="Gerente"/>
+				<f:selectItem itemValue="B" itemLabel="Balconista"/>
+	
+			</p:selectOneRadio>	
+
+			<p:outputLabel for="Ativo" value="Ativo:"/>
+			<p:selectBooleanCheckbox id ="Ativo" value="#{usuarioBean.usuario.ativo}"
+				required="true" requiredMessage="O campo ativo é obrigatório."/>	
+		</h:panelGrid>
+		<h:panelGrid columns="2">
+			
+			<p:commandButton value="Salvar"
+				update=":mensagem :formCadastro:painel :formListagem:tabela"
+				actionListener="#{usuarioBean.salvar()}"/>
+			<p:commandButton value="Fechar" oncomplete="PF('dlgUsuario').hide();"/>
+			
+		</h:panelGrid>
+ 
+    </h:form>	
+</p:dialog>
+</h:body>
+</html>
