@@ -1,19 +1,20 @@
+# Projeto - Curso Java - JDev Treinamento
 
+## 
 
-Curso Java - JDev Treinamento
+Projeto Drogaria - CRUD - 
 
-Projeto Drogaria - CRUD 
+### Tópicos Abordados
 
-Tópicos Abordados
+1 – JSP
 
-JSP
+2 – JSF
 
-JSF
+3 – PrimeFaces 
 
-PrimeFaces
+4 – Hibernate 
 
-Hibernate
+5 – Servlets
 
-Servlets
+6 – JPA
 
-JPA
